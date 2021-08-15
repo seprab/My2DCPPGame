@@ -1,22 +1,23 @@
-#include "GameplayManager.h"
+#include "gameplayManager.hpp"
+/*
 #include "Enemy.h"
 #include <limits>
 #include <vector>
 #include "Character.h"
 #include "BaseCharacter.h"
 #include "raymath.h"
+*/
 
 GameplayManager::GameplayManager(int winWidth, int winHeight)
 {
     windowDimensions[0] = winWidth;
     windowDimensions[1] = winHeight;
-    map = LoadTexture("nature_tileset/OpenWorldMap24x24.png");
-    mapScale = 4.f;
+    //map = LoadTexture("../resources/texture/nature_tileset/OpenWorldMap24x24.png");
+    //mapScale = 4.f;
 }
-
+/*
  void GameplayManager::AddEnemy(Enemy* enemy)
  {
-     enemy->setManager(this);
      enemies.push_back(enemy);
  }
 
@@ -40,7 +41,6 @@ void GameplayManager::Update()
 void GameplayManager::registerMainCharacter(Character& chr)
 {
     mainCharacter = &chr;
-    mainCharacter->setManager(this);
 }
 
 bool GameplayManager::HittingMapBounds()
@@ -55,13 +55,7 @@ bool GameplayManager::HittingMapBounds()
 void GameplayManager::ApplyMovement(Vector2 input)
 {
     // Move the character's position
-    mainCharacter->setPosLastFrame(mainCharacter->getPosition());
     mainCharacter->setPosition(Vector2{mainCharacter->getPosition().x + input.x, mainCharacter->getPosition().y + input.y});
-
-    if (HittingMapBounds() || mainCharacter->isCollidingWithProp())
-    {
-        mainCharacter->setPosition(mainCharacter->getPosLastFrame());
-    }
     movementInput = Vector2{}; // zero out movementInput
 }
 
@@ -69,3 +63,4 @@ Vector2 GameplayManager::getScreenPosition()
 {
     return mainCharacter->getPosition();
 }
+*/

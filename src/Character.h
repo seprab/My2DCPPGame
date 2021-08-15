@@ -13,8 +13,6 @@ public:
     virtual void DrawCharacter() override;
     virtual Rectangle getCollision();
     virtual Vector2 getCenter();
-protected:
-    void setRightLeft(float rl) override;
 
 private:
     Vector2 windowDimensions{};
