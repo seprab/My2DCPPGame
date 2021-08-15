@@ -1,0 +1,90 @@
+//id	name
+1	Sword
+2	Greatsword
+3	Bow
+4	Firegun
+5	Blade
+6	Boxing Gloves
+7	Dagger
+8	Gold Pouch
+9	Short Staff
+10	Hammer
+11	Shield
+12	Arrow
+13	Ammunition
+14	Headgear
+15	
+16	
+17	Hammer
+18	Axe
+19	Metal Pickaxe
+20	Hat
+21	Face
+22	Armor
+23	Gloves
+24	Shoe
+25	Necklace
+26	Ring
+27	Tattoo
+28	Hair
+29	Coral
+30	
+31	Recovery Type
+32	Addition Type
+33	Special effect type
+34	Skill book
+35	Life skill book
+36	Teleport ticket
+37	
+38	
+39	
+40	
+41	Common item
+42	Quest Item
+43	Vessel deed
+44	Wings
+45	Commerce permit
+46	Medal of valor
+47	Gem composition scroll
+48	
+49	Gem
+50	Refining gem
+51	Prow
+52	Hull
+53	Mobility
+54	Ship Cannon
+55	Propeller
+56	Ship Symbol
+57	Fairy ration
+58	Fairy fruit
+59	Fairy
+60	Fusion scroll
+61	Fusion catalyst
+62	Strengthening scroll
+63	Strengthening catalyst
+64	Cannon Symbol
+65	Altar/Time card
+66	Altar curse removal
+67	Fairy egg
+68	Chaos manual
+69	Blueprint
+70	Tool
+71	Manufacture
+72	
+73	
+74	
+75	Lottery Ticket
+76	Lottery Ball
+77	Rear fairy
+78	Rear fairy liquid
+79	
+80	Reset/Reallocate stone
+81	Bracelet
+82	Belt
+83	Handguard
+84	Unknown (possibly fairy+wings combo)
+85	Unknown (item with effect)
+86	Unknown (item with effect)2
+87	Unknown (item with effect)3
+88	Unknown
+89	Unknown 2
