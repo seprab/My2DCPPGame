@@ -1,5 +1,4 @@
 #include "BaseCharacter.h"
-#include "GameplayManager.h"
 #include "raylib.h"
 #include "raymath.h"
 
@@ -18,6 +17,11 @@ void BaseCharacter::UpdateMovement()
         direction = Vector2{0.f, 0.f};
     }
     else texture = idleSheet;
+}
+
+Rectangle BaseCharacter::getCollision()
+{
+    return Rectangle();
 }
 
 Vector2 BaseCharacter::getCenter()

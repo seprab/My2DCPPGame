@@ -1,4 +1,4 @@
-#include "globalController.hpp"
+#include "globalController.h"
 
 GlobalController::GlobalController(Vector2 winSize)
 {

@@ -1,13 +1,11 @@
 #include "Character.h"
 #include "raylib.h"
 #include "raymath.h"
-#include "GameplayManager.h"
 #include <limits>
 #include <string>
 
-Character::Character(Vector2 screen)
+Character::Character()
 {
-    windowDimensions = screen;
     speed = 6.f;
     drawScale = 5.f;
     setIdleSheet(LoadTexture("../resources/texture/characters/knight_idle_spritesheet.png"));
@@ -41,8 +39,6 @@ void Character::UpdateMovement()
     if (Vector2Length(direction) != 0.f)
     {
         texture = runSheet;
-        if (direction.x < 0.f) setRightLeft(-1.f);
-        else setRightLeft(1.f);
         Vector2 input{Vector2Scale(Vector2Normalize(direction), speed)};
         direction = Vector2{0.f, 0.f};
     }

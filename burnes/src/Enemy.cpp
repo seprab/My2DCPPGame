@@ -40,22 +40,14 @@ void Enemy::Tick(float deltaTime)
             PURPLE
         );
     }
-    // check for collisions
-    if (isCollidingWithProp())
-    {
-        UndoMovement();
-    }
+
 }
 
 void Enemy::UpdateMovement()
 {
-    rightLeftLastFrame = rightLeft;
     if (Vector2Length(direction) != 0.f)
     {
         texture = runSheet;
-        if (direction.x < 0.f) setRightLeft(-1.f);
-        else setRightLeft(1.f);
-        posLastFrame = position;
         position = Vector2Add(position, Vector2Scale(Vector2Normalize(direction), speed));
         direction = Vector2{0.f, 0.f};
     }

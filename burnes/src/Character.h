@@ -5,8 +5,7 @@
 class Character : public BaseCharacter
 {
 public:
-    Character() = default;
-    Character(Vector2 screen);
+    Character();
     virtual void Tick(float deltaTime) override;
     virtual void UpdateMovement() override;
     void DrawWeapon();

@@ -1,7 +1,7 @@
 #ifndef BASE_CHARACTER_H
 #define BASE_CHARACTER_H
 #include "Collidable.h"
-#include "stats.hpp"
+//#include "stats.h"
 #include <vector>
 class BaseCharacter : public Collidable
 {
@@ -22,7 +22,7 @@ protected:
 private:
     int frame{};
     float health = 100.f;
-    Stats stats;
+    //Stats stats;
 
 public:
     void setSpeed(float spd) { speed = spd; }
