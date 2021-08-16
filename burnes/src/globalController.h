@@ -1,22 +1,25 @@
 #ifndef GLOBAL_CONTROLLER
 #define GLOBAL_CONTROLLER
 
+#include <memory>
 #include "raylib.h"
+#include "BaseCharacter.h"
+#include "world.h"
+
 
 class GlobalController
 {
 public:
-    GlobalController(Vector2 winSize);
+    GlobalController();
     ~GlobalController();
 
-    Texture2D map{};
-    float mapScale{};
-
+    void AddCharacter(BaseCharacter* character);
+    void RemoveCharacter(BaseCharacter* character);
     void Update();
 
 private:
-    Vector2 windowDimensions{};
-    Vector2 worldOrigin{0,0};
+    World currentWorld;
+    std::vector<BaseCharacter*> characters;
 };
 
 #endif

@@ -6,7 +6,7 @@ class Character : public BaseCharacter
 {
 public:
     Character();
-    virtual void Tick(float deltaTime) override;
+    virtual void Tick() override;
     virtual void UpdateMovement() override;
     void DrawWeapon();
     virtual void DrawCharacter() override;

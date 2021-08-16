@@ -179,6 +179,7 @@
     <ClInclude Include="src\item.h" />
     <ClInclude Include="src\stats.h" />
     <ClInclude Include="src\world.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseCharacter.cpp" />
@@ -189,7 +190,9 @@
     <ClCompile Include="src\globalController.cpp" />
     <ClCompile Include="src\item.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\stats.cpp" />
     <ClCompile Include="src\world.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\build\raylib.vcxproj">

@@ -21,6 +21,6 @@ public:
     explicit Stats(int str=5, int agi=5, int acc=5, int def=5, int res=5):
     strength(str), agility(agi), accuracy(acc), defense(def), resistance(res){};
 
-    ~Stats();
+    ~Stats(){}
 };
 #endif

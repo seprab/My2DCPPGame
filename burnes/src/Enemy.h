@@ -7,7 +7,7 @@ class Enemy : public BaseCharacter
 {
 public:
     Enemy();
-    virtual void Tick(float deltaTime) override;
+    virtual void Tick() override;
     void UpdateMovement() override;
 
 private:

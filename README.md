@@ -4,3 +4,4 @@
 * raylib core repo [https://github.com/raysan5/raylib]
 * raylib practices [https://github.com/ianyepan/raylib-practices]
 * raylib website [https://www.raylib.com/index.html]
+* utilities [https://github.com/nothings/single_file_libs]

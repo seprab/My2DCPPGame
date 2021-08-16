@@ -8,9 +8,9 @@ Character::Character()
 {
     speed = 6.f;
     drawScale = 5.f;
-    setIdleSheet(LoadTexture("../resources/texture/characters/knight_idle_spritesheet.png"));
-    setRunSheet(LoadTexture("../resources/texture/characters/knight_run_spritesheet.png"));
-    weapon = LoadTexture("../resources/texture/characters/weapon_sword_1.png");
+    setIdleSheet(LoadTexture("resources/texture/characters/knight_idle_spritesheet.png"));
+    setRunSheet(LoadTexture("resources/texture/characters/knight_run_spritesheet.png"));
+    weapon = LoadTexture("resources/texture/characters/weapon_sword_1.png");
     texture = idleSheet;
     weaponCollisionRec.width = weapon.width;
     weaponCollisionRec.height = weapon.height;
@@ -45,9 +45,9 @@ void Character::UpdateMovement()
     else texture = idleSheet;
 }
 
-void Character::Tick(float deltaTime)
+void Character::Tick()
 {
-    BaseCharacter::Tick(deltaTime);
+    BaseCharacter::Tick();
     // process input
     if (getHealth() <= 0.f) return;
     if (IsKeyDown(KEY_A)) direction.x -= 1.f;
@@ -105,6 +105,7 @@ void Character::DrawCharacter()
         std::string healthAmount = "Health: " + std::to_string(getHealth());
         DrawText(healthAmount.c_str(), 0, 0, 40, RED);
     }
+
     Rectangle sourceRec{rectangle};
     Rectangle destRec{rectangle};
     Vector2 origin{0.f, 0.f};

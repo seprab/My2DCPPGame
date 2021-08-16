@@ -1,16 +1,43 @@
 #include "globalController.h"
+#include "Character.h"
 
-GlobalController::GlobalController(Vector2 winSize)
+GlobalController::GlobalController()
 {
-    windowDimensions = winSize;
-    map = LoadTexture("resources/texture/nature_tileset/OpenWorldMap24x24.png");
-    mapScale = 4.f;
+    if (IsWindowFullscreen())
+    {
+        ToggleFullscreen();
+    }
+    currentWorld = World();
+    AddCharacter(new Character());
 }
 GlobalController::~GlobalController()
 {
-
+    for (int i = 0; i < (int)characters.size(); i++)
+    {
+        RemoveCharacter(characters[i]);
+    }
+}
+void GlobalController::AddCharacter(BaseCharacter* character)
+{
+    characters.push_back(character);
+}
+void GlobalController::RemoveCharacter(BaseCharacter* character)
+{
+    character->Destroy();
+    //std::remove(characters.begin(), characters.end(), character);
+    for (int i = 0; i < (int)characters.size(); i++)
+    {
+        if (*characters[i] == character)
+        {
+            characters.erase(characters.begin() + i);
+        }
+    }
 }
 void GlobalController::Update()
 {
-    DrawTextureEx(map, worldOrigin, 0.f, 4.f, WHITE);
+    currentWorld.Tick();
+    for (int i = 0; i < (int)characters.size(); i++)
+    {
+        characters[i]->Tick();
+    }
 }

@@ -11,10 +11,10 @@ Enemy::Enemy()
     agroed = false;
 }
 
-void Enemy::Tick(float deltaTime)
+void Enemy::Tick()
 {
     if (getHealth() <= 0.f) return;
-    BaseCharacter::Tick(deltaTime);
+    BaseCharacter::Tick();
     if (target)
     {
         Vector2 toTarget = Vector2Subtract(target->getCenter(), getCenter());
