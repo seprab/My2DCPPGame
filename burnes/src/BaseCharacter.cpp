@@ -17,25 +17,21 @@ void BaseCharacter::UpdateMovement()
 {
     if (Vector2Length(direction) != 0.f)
     {
-        currenState = walk;
-        Vector2 input{Vector2Scale(Vector2Normalize(direction), speed)};
-        direction = Vector2{0.f, 0.f};
+        currentState = State::walk;
+        Vector2 input{ Vector2Scale(Vector2Normalize(direction), speed) };
+        position.x += input.x;
+        position.y += input.y;
+        direction = Vector2{ 0.f, 0.f };
     }
     else
     {
-        currenState = idle;
+        currentState = State::idle;
     }
 }
 
 Rectangle BaseCharacter::getCollision()
 {
     return Rectangle();
-}
-
-Texture2D BaseCharacter::getAnimationFrame()
-{
-    Texture2D currentSheet = animationSheets[static_cast<int>(getState)];
-    Rectangle frameRec = { 0.0f, 0.0f, (float)scarfy.width / 6, (float)scarfy.height };
 }
 
 Vector2 BaseCharacter::getCenter()
@@ -80,17 +76,37 @@ std::set<std::string> BaseCharacter::getHash()
     return hash;
 }
 
-state BaseCharacter::getState() const
+BaseCharacter::State BaseCharacter::getState() const
 {
-    return state();
+    return State();
 }
 
 void BaseCharacter::DrawCharacter()
 {
-    Rectangle sourceRec{rectangle};
-    Rectangle destRec{rectangle};
-    Vector2 origin{0.f, 0.f};
-    DrawTexturePro(getTexture(),sourceRec, destRec, origin, 0.f, WHITE);
+    int stateNum = static_cast<int>(getState());
+    int framesNum = framesInState[stateNum];
+        
+    ////TODO
+    //Texture2D currentSheet = animationSheets[stateNum];
+    //if (texture != currentSheet)
+    //{
+    //    texture = animationSheets[stateNum];
+    //}
+    
+    texture = animationSheets[stateNum];
+    texture = animationSheets[0];
+    rectangle.width = (float)texture.width / framesNum * frame;
+    rectangle.width = texture.width;
+
+    if (frame >= framesNum)
+    {
+        frame = 0;
+    }
+
+    DrawTextureRec(texture, rectangle, position, WHITE);
+
+    std::string healthAmount = "x: " + std::to_string(position.x) + "y: " + std::to_string(position.y);
+    DrawText(healthAmount.c_str(), 250, 250, 20, RED);
 }
 
 bool BaseCharacter::operator==(BaseCharacter* obj)

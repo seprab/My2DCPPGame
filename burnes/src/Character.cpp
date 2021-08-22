@@ -8,8 +8,15 @@ Character::Character()
 {
     speed = 6.f;
     drawScale = 5.f;
+
     animationSheets[0] = LoadTexture("resources/texture/characters/knight_idle_spritesheet.png");
-    animationSheets[1] = (LoadTexture("resources/texture/characters/knight_run_spritesheet.png");
+    animationSheets[1] = LoadTexture("resources/texture/characters/knight_run_spritesheet.png");
+    animationSheets[2] = LoadTexture("resources/texture/characters/knight_run_spritesheet.png");
+    framesInState[0] = 6;
+    framesInState[1] = 6;
+    framesInState[2] = 6;
+
+
     weapon = LoadTexture("resources/texture/characters/weapon_sword_1.png");
     weaponCollisionRec.width = weapon.width;
     weaponCollisionRec.height = weapon.height;
@@ -33,19 +40,6 @@ Vector2 Character::getCenter()
     return Vector2{windowDimensions.x/2.f - drawScale*rectangle.width/2.f, windowDimensions.y/2.f - drawScale*rectangle.height/2.f};
 }
 
-void Character::UpdateMovement()
-{
-    if (Vector2Length(direction) != 0.f)
-    {
-        texture = runSheet;
-        Vector2 input{Vector2Scale(Vector2Normalize(direction), speed)};
-        rectangle.x += input.x;
-        rectangle.y += input.y;
-        direction = Vector2{0.f, 0.f};
-    }
-    else texture = idleSheet;
-}
-
 void Character::Tick()
 {
     
@@ -55,22 +49,29 @@ void Character::Tick()
     if (IsKeyDown(KEY_D)) direction.x += 1.f;
     if (IsKeyDown(KEY_W)) direction.y -= 1.f;
     if (IsKeyDown(KEY_S)) direction.y += 1.f;
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) Attack();
 
-    if (attacking)
-    {
-        attackTime += GetFrameTime();
-        if (attackTime >= attackDuration)
-        {
-            EndAttack();
-            attackTime = 0.f;
-        }
-    }
-    weaponCollisionRec.y = getCenter().y + 10.f;
-    DrawRectangleLines(getWeaponCollisionRec().x,getWeaponCollisionRec().y,getWeaponCollisionRec().width,getWeaponCollisionRec().height,BLUE);
+    //TODO
+    //if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) Attack();
+
+    //if (attacking)
+    //{
+    //    attackTime += GetFrameTime();
+    //    if (attackTime >= attackDuration)
+    //    {
+    //        EndAttack();
+    //        attackTime = 0.f;
+    //    }
+    //}
+    //weaponCollisionRec.y = getCenter().y + 10.f;
+    //DrawRectangleLines(getWeaponCollisionRec().x,getWeaponCollisionRec().y,getWeaponCollisionRec().width,getWeaponCollisionRec().height,BLUE);
 
 
     BaseCharacter::Tick();
+}
+
+void Character::UpdateMovement()
+{
+    BaseCharacter::UpdateMovement();
 }
 
 Rectangle Character::getCollision()
@@ -107,12 +108,9 @@ void Character::DrawCharacter()
     else 
     {
         std::string healthAmount = "Health: " + std::to_string(getHealth());
-        DrawText(healthAmount.c_str(), 0, 0, 40, RED);
+        //DrawText(healthAmount.c_str(), 0, 0, 40, RED);
     }
 
-    Rectangle sourceRec{rectangle};
-    Rectangle destRec{rectangle};
-    Vector2 origin{0.f, 0.f};
-    DrawTexture(getTexture(), rectangle.x, rectangle.y, WHITE);
-    DrawWeapon();
+    //DrawWeapon();
+    BaseCharacter::DrawCharacter();
 }

@@ -45,13 +45,6 @@ void Enemy::Tick()
 
 void Enemy::UpdateMovement()
 {
-    if (Vector2Length(direction) != 0.f)
-    {
-        texture = runSheet;
-        position = Vector2Add(position, Vector2Scale(Vector2Normalize(direction), speed));
-        direction = Vector2{0.f, 0.f};
-    }
-    else
-        texture = idleSheet;
+    BaseCharacter::UpdateMovement();
 }
 

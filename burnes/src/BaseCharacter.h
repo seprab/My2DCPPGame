@@ -19,12 +19,20 @@ public:
     virtual Rectangle getCollision();
     virtual void DrawCharacter();
     bool operator == (BaseCharacter* obj);
-    enum state{ idle, walk, run, attack, damaged, STATE_NR_ITEMS};
+    enum class State{ 
+        idle,
+        walk,
+        run,
+        attack,
+        damaged,
+        STATE_NR_ITEMS
+    };
 
 protected:
     Rectangle rectangle{};
     Vector2 direction{};
-    Texture2D animationSheets[STATE_NR_ITEMS];
+    Texture2D animationSheets[static_cast<int>(State::STATE_NR_ITEMS)];
+    int framesInState[static_cast<int>(State::STATE_NR_ITEMS)]; //how many frames the spritesheet has per state
     float speed;
 
 private:
@@ -32,8 +40,8 @@ private:
     float health = 100.f;
     Stats stats;
     std::set<std::string> hash;
-    Texture2D getAnimationFrame();
-    state currenState;
+    State currentState;
+
 
 public:
     void setSpeed(float spd) { speed = spd; }
@@ -51,7 +59,7 @@ public:
     void Spawn();
     void Destroy();
     std::set<std::string> getHash();
-    state getState() const;
+    State getState() const;
 };
 
 #endif
