@@ -1,4 +1,3 @@
-
 #include "BaseCharacter.h"
 #include "raylib.h"
 #include "raymath.h"
@@ -8,6 +7,7 @@ void BaseCharacter::Tick()
     UpdateMovement();
     DrawCharacter();
 }
+
 BaseCharacter::BaseCharacter()
 {
     hash = Utils::GenerateHash();
@@ -29,17 +29,31 @@ void BaseCharacter::UpdateMovement()
     }
 }
 
-Rectangle BaseCharacter::getCollision()
+void BaseCharacter::DrawCharacter()
 {
-    return Rectangle();
+    int stateNum = static_cast<int>(getState());
+    int framesNum = framesInState[stateNum];
+    if (frame >= framesNum)
+    {
+        frame = 0;
+    }
+
+    texture = animationSheets[stateNum];
+
+    Rectangle SubRectTexture{
+        texture.width / framesNum * frame,
+        0,
+        texture.width / framesNum,
+        texture.height
+    };
+    
+    frame++;
+
+    DrawTextureRec(texture, SubRectTexture, position, WHITE);
 }
 
-Vector2 BaseCharacter::getCenter()
+void BaseCharacter::Attack()
 {
-    return Vector2{
-        position.x + rectangle.width/2.f,
-        position.y + rectangle.height/2.f
-    };
 }
 
 void BaseCharacter::Damage(float points)
@@ -79,34 +93,6 @@ std::set<std::string> BaseCharacter::getHash()
 BaseCharacter::State BaseCharacter::getState() const
 {
     return State();
-}
-
-void BaseCharacter::DrawCharacter()
-{
-    int stateNum = static_cast<int>(getState());
-    int framesNum = framesInState[stateNum];
-        
-    ////TODO
-    //Texture2D currentSheet = animationSheets[stateNum];
-    //if (texture != currentSheet)
-    //{
-    //    texture = animationSheets[stateNum];
-    //}
-    
-    texture = animationSheets[stateNum];
-    texture = animationSheets[0];
-    rectangle.width = (float)texture.width / framesNum * frame;
-    rectangle.width = texture.width;
-
-    if (frame >= framesNum)
-    {
-        frame = 0;
-    }
-
-    DrawTextureRec(texture, rectangle, position, WHITE);
-
-    std::string healthAmount = "x: " + std::to_string(position.x) + "y: " + std::to_string(position.y);
-    DrawText(healthAmount.c_str(), 250, 250, 20, RED);
 }
 
 bool BaseCharacter::operator==(BaseCharacter* obj)

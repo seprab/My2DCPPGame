@@ -16,7 +16,6 @@ public:
     BaseCharacter();
     virtual void Tick();
     virtual void UpdateMovement();
-    virtual Rectangle getCollision();
     virtual void DrawCharacter();
     bool operator == (BaseCharacter* obj);
     enum class State{ 
@@ -29,7 +28,6 @@ public:
     };
 
 protected:
-    Rectangle rectangle{};
     Vector2 direction{};
     Texture2D animationSheets[static_cast<int>(State::STATE_NR_ITEMS)];
     int framesInState[static_cast<int>(State::STATE_NR_ITEMS)]; //how many frames the spritesheet has per state
@@ -41,16 +39,14 @@ private:
     Stats stats;
     std::set<std::string> hash;
     State currentState;
-
+    virtual void Attack();
 
 public:
     void setSpeed(float spd) { speed = spd; }
-    virtual Vector2 getCenter();
     void setPos(Vector2 pos) { position = pos; }
     void setDirection(Vector2 dir) { direction = dir; }
     float getHealth() const { return health;}
     void setHealth(float amount) { health = amount; }
-    Rectangle getRectangle() const { return rectangle;}
     void Damage(float points);
     void Heal(float points);
     void Freeze(float time);
