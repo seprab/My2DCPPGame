@@ -1,3 +1,4 @@
+
 #include "BaseCharacter.h"
 #include "raylib.h"
 #include "raymath.h"
@@ -16,16 +17,25 @@ void BaseCharacter::UpdateMovement()
 {
     if (Vector2Length(direction) != 0.f)
     {
-        texture = runSheet;
+        currenState = walk;
         Vector2 input{Vector2Scale(Vector2Normalize(direction), speed)};
         direction = Vector2{0.f, 0.f};
     }
-    else texture = idleSheet;
+    else
+    {
+        currenState = idle;
+    }
 }
 
 Rectangle BaseCharacter::getCollision()
 {
     return Rectangle();
+}
+
+Texture2D BaseCharacter::getAnimationFrame()
+{
+    Texture2D currentSheet = animationSheets[static_cast<int>(getState)];
+    Rectangle frameRec = { 0.0f, 0.0f, (float)scarfy.width / 6, (float)scarfy.height };
 }
 
 Vector2 BaseCharacter::getCenter()
@@ -34,16 +44,6 @@ Vector2 BaseCharacter::getCenter()
         position.x + rectangle.width/2.f,
         position.y + rectangle.height/2.f
     };
-}
-
-void BaseCharacter::setIdleSheet(Texture2D sheet)
-{
-    idleSheet = sheet;
-}
-
-void BaseCharacter::setRunSheet(Texture2D sheet) 
-{ 
-    runSheet = sheet;
 }
 
 void BaseCharacter::Damage(float points)
@@ -78,6 +78,11 @@ void BaseCharacter::Destroy()
 std::set<std::string> BaseCharacter::getHash()
 {
     return hash;
+}
+
+state BaseCharacter::getState() const
+{
+    return state();
 }
 
 void BaseCharacter::DrawCharacter()

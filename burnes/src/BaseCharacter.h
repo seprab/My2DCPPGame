@@ -4,6 +4,7 @@
 #include <vector>
 #include <set>
 #include <string>
+#include <thread>
 
 #include "Collidable.h"
 #include "stats.h"
@@ -18,28 +19,27 @@ public:
     virtual Rectangle getCollision();
     virtual void DrawCharacter();
     bool operator == (BaseCharacter* obj);
+    enum state{ idle, walk, run, attack, damaged, STATE_NR_ITEMS};
 
 protected:
     Rectangle rectangle{};
     Vector2 direction{};
-    Texture2D idleSheet;
-    Texture2D runSheet;
+    Texture2D animationSheets[STATE_NR_ITEMS];
     float speed;
-
 
 private:
     int frame{};
     float health = 100.f;
     Stats stats;
     std::set<std::string> hash;
+    Texture2D getAnimationFrame();
+    state currenState;
 
 public:
     void setSpeed(float spd) { speed = spd; }
     virtual Vector2 getCenter();
     void setPos(Vector2 pos) { position = pos; }
     void setDirection(Vector2 dir) { direction = dir; }
-    void setIdleSheet(Texture2D sheet);
-    void setRunSheet(Texture2D sheet);
     float getHealth() const { return health;}
     void setHealth(float amount) { health = amount; }
     Rectangle getRectangle() const { return rectangle;}
@@ -51,6 +51,7 @@ public:
     void Spawn();
     void Destroy();
     std::set<std::string> getHash();
+    state getState() const;
 };
 
 #endif

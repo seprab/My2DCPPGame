@@ -8,10 +8,9 @@ Character::Character()
 {
     speed = 6.f;
     drawScale = 5.f;
-    setIdleSheet(LoadTexture("resources/texture/characters/knight_idle_spritesheet.png"));
-    setRunSheet(LoadTexture("resources/texture/characters/knight_run_spritesheet.png"));
+    animationSheets[0] = LoadTexture("resources/texture/characters/knight_idle_spritesheet.png");
+    animationSheets[1] = (LoadTexture("resources/texture/characters/knight_run_spritesheet.png");
     weapon = LoadTexture("resources/texture/characters/weapon_sword_1.png");
-    texture = idleSheet;
     weaponCollisionRec.width = weapon.width;
     weaponCollisionRec.height = weapon.height;
 }
@@ -40,6 +39,8 @@ void Character::UpdateMovement()
     {
         texture = runSheet;
         Vector2 input{Vector2Scale(Vector2Normalize(direction), speed)};
+        rectangle.x += input.x;
+        rectangle.y += input.y;
         direction = Vector2{0.f, 0.f};
     }
     else texture = idleSheet;
@@ -47,7 +48,7 @@ void Character::UpdateMovement()
 
 void Character::Tick()
 {
-    BaseCharacter::Tick();
+    
     // process input
     if (getHealth() <= 0.f) return;
     if (IsKeyDown(KEY_A)) direction.x -= 1.f;
@@ -67,6 +68,9 @@ void Character::Tick()
     }
     weaponCollisionRec.y = getCenter().y + 10.f;
     DrawRectangleLines(getWeaponCollisionRec().x,getWeaponCollisionRec().y,getWeaponCollisionRec().width,getWeaponCollisionRec().height,BLUE);
+
+
+    BaseCharacter::Tick();
 }
 
 Rectangle Character::getCollision()
@@ -109,6 +113,6 @@ void Character::DrawCharacter()
     Rectangle sourceRec{rectangle};
     Rectangle destRec{rectangle};
     Vector2 origin{0.f, 0.f};
-    DrawTexturePro(getTexture(),sourceRec, destRec, origin, 0.f, WHITE);
+    DrawTexture(getTexture(), rectangle.x, rectangle.y, WHITE);
     DrawWeapon();
 }

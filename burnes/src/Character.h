@@ -29,6 +29,7 @@ private:
     bool attacking{false};
     void Attack();
     void EndAttack();
+
 public:
     float getWeaponDrawScale() { return weaponDrawScale;}
     inline float getWeaponRot() const { return weaponRot; }
