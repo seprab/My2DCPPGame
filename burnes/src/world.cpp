@@ -4,6 +4,7 @@ World::World()
 {
 	filePath = "resources/texture/nature_tileset/OpenWorldMap24x24.png";
 	map = LoadTexture(filePath);
+	SetWindowSize(map.width, map.height);
 }
 
 World::~World()

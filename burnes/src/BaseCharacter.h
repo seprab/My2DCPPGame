@@ -29,6 +29,7 @@ public:
 
 protected:
     Vector2 direction{};
+    int hazeDirection{ 1 };
     Texture2D animationSheets[static_cast<int>(State::STATE_NR_ITEMS)];
     int framesInState[static_cast<int>(State::STATE_NR_ITEMS)]; //how many frames the spritesheet has per state
     float speed;

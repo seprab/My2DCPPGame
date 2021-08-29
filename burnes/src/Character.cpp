@@ -43,6 +43,7 @@ void Character::DrawCharacter()
         std::string healthAmount = "Health: " + std::to_string(getHealth());
         DrawText(healthAmount.c_str(), 0, 0, 40, RED);
     }
-
+    std::string posText = "(" + Utils::to_string_with_precision(position.x) + ", " + Utils::to_string_with_precision(position.y) + ")";
+    DrawText(posText.c_str(), position.x, position.y - 20, 15, DARKGRAY);
     BaseCharacter::DrawCharacter();
 }

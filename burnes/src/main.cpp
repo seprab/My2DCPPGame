@@ -4,6 +4,7 @@
 int main(void)
 {
     const Vector2 windowDimensions{1280, 720};
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(windowDimensions.x, windowDimensions.y, "RPG!");  
     
     GlobalController globalController;

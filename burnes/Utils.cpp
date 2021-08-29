@@ -23,3 +23,12 @@ std::string Utils::generateHashTag() {
 int Utils::irand(int min, int max) {
     return ((double)rand() / ((double)RAND_MAX + 1.0)) * (max - min + 1) + min;
 }
+
+std::string Utils::to_string_with_precision(float a_value, const int n)
+{
+    std::ostringstream out;
+    out.precision(n);
+    out << a_value;
+    return out.str();
+    //return "hola";
+}

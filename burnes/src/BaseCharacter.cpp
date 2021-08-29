@@ -20,7 +20,8 @@ void BaseCharacter::UpdateMovement()
         currentState = State::walk;
         Vector2 input{ Vector2Scale(Vector2Normalize(direction), speed) };
         position.x += input.x;
-        position.y += input.y;
+        position.y += input.y;  
+        hazeDirection = direction.x < 0 ? -1 : 1;
         direction = Vector2{ 0.f, 0.f };
     }
     else
@@ -40,10 +41,12 @@ void BaseCharacter::DrawCharacter()
 
     texture = animationSheets[stateNum];
 
+
+    int widthScale = hazeDirection < 0 ? -1 : 1;
     Rectangle SubRectTexture{
         texture.width / framesNum * frame,
         0,
-        texture.width / framesNum,
+        texture.width / framesNum * widthScale,
         texture.height
     };
     

@@ -2,6 +2,8 @@
 #define CHARACTER_H
 #include "raylib.h"
 #include "BaseCharacter.h"
+#include "Utils.h"
+
 class Character : public BaseCharacter
 {
 public:
