@@ -44,6 +44,8 @@ void Character::DrawCharacter()
         DrawText(healthAmount.c_str(), 0, 0, 40, RED);
     }
     std::string posText = "(" + Utils::to_string_with_precision(position.x) + ", " + Utils::to_string_with_precision(position.y) + ")";
+    std::string posTextB = "(" + std::to_string(position.x) + ", " + std::to_string(position.y) + ")";
     DrawText(posText.c_str(), position.x, position.y - 20, 15, DARKGRAY);
+    DrawText(posTextB.c_str(), position.x, position.y - 40, 15, DARKGRAY);
     BaseCharacter::DrawCharacter();
 }

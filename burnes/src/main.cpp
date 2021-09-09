@@ -15,7 +15,7 @@ int main(void)
         BeginDrawing();
             ClearBackground(BLACK);
             globalController.Update();
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawFPS(0, 0);       
         EndDrawing();
     }
 

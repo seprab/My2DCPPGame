@@ -15,3 +15,8 @@ void World::Tick()
 {
 	DrawTextureEx(map, worldOrigin, 0.f, 1, WHITE);
 }
+
+void World::InstanceObjects()
+{
+
+}
